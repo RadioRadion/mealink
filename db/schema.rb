@@ -10,17 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_105058) do
+ActiveRecord::Schema.define(version: 2020_12_01_145140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "cooker_id", null: false
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cooker_id"], name: "index_comments_on_cooker_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "cookers", force: :cascade do |t|
     t.string "address"
     t.string "username"
     t.string "name"
     t.string "last_name"
-    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_105058) do
   end
 
   create_table "meals", force: :cascade do |t|
-    t.string "type"
+    t.string "typology"
     t.integer "price"
     t.integer "rating"
     t.integer "stock"
@@ -42,6 +51,16 @@ ActiveRecord::Schema.define(version: 2020_12_01_105058) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cooker_id"], name: "index_meals_on_cooker_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "meal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["meal_id"], name: "index_notes_on_meal_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -71,12 +90,18 @@ ActiveRecord::Schema.define(version: 2020_12_01_105058) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "cookers"
+  add_foreign_key "comments", "users"
   add_foreign_key "ingredients", "meals"
   add_foreign_key "meals", "cookers"
+  add_foreign_key "notes", "meals"
+  add_foreign_key "notes", "users"
   add_foreign_key "order_items", "meals"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "cookers"
