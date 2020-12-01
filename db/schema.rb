@@ -10,28 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_145140) do
+ActiveRecord::Schema.define(version: 2020_12_01_185051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "cooker_id", null: false
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cooker_id"
     t.index ["cooker_id"], name: "index_comments_on_cooker_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "cookers", force: :cascade do |t|
-    t.string "address"
-    t.string "username"
-    t.string "name"
-    t.string "last_name"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["email"], name: "index_cookers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_cookers_on_reset_password_token", unique: true
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -47,9 +54,9 @@ ActiveRecord::Schema.define(version: 2020_12_01_145140) do
     t.integer "price"
     t.integer "rating"
     t.integer "stock"
-    t.bigint "cooker_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cooker_id"
     t.index ["cooker_id"], name: "index_meals_on_cooker_id"
   end
 
@@ -75,9 +82,9 @@ ActiveRecord::Schema.define(version: 2020_12_01_145140) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "cooker_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cooker_id"
     t.index ["cooker_id"], name: "index_orders_on_cooker_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

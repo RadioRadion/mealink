@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.create!(address: "34 Rue du Bon Gouda", email: "tony@gromail.com", password: "azertie")
-cooker = Cooker.create!(address: "36 Rue des anciens pauvres", username: "PP", name: "Pablo", last_name: "Picassiette")
+cooker = Cooker.create!(address: "36 Rue des anciens pauvres", username: "PP", first_name: "Pablo", last_name: "Picassiette", email: "pp@gromail.com", password: "azertie")
 hamburger = Meal.create!(typology: "plat", price: 9, stock: 8, cooker: cooker)
 tiramisu = Meal.create!(typology: "dessert", price: 3, stock: 8, cooker: cooker)
 order1 = Order.create!(user: user, cooker: cooker)
