@@ -1,10 +1,12 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<%= simple_form_for(@search) do |f| %>
-  <%= f.input :address, as: :text %>
-  <%= f.input :distance, as: :text %>
-  <%= f.button :submit %>
+<%= form_for(@search) do |f| %>
+  <%= f.label :address %>
+  <%= f.text_field :address, id: 'cooker_search' %>
+  <%= f.label :distance %>
+  <%= f.text_field :distance %>
+  <%= f.submit :submit %>
 <% end %>
 
 <p>connect as user</p>
