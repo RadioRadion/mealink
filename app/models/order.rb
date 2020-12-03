@@ -4,4 +4,6 @@ class Order < ApplicationRecord
 
   has_many :order_items
   has_many :meals, through: :order_items
+
+  validates :statut, presence: true, inclusion: { in: ["pending", "paid", "done"] }
 end
