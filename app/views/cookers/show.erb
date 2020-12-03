@@ -1,5 +1,7 @@
 <%= @cooker.username %>
 
+<%= cl_image_tag @cooker.photo.key, height: 300, width: 400, crop: :fill %>
+
 <% if user_signed_in? %>
 
   <%= simple_form_for([ @cooker, @order_item ]) do |f| %>
