@@ -9,7 +9,14 @@
   <%= f.submit :submit %>
 <% end %>
 
-<p>connect as user</p>
-<p>connect as cooker</p>
+<%= link_to "connect as user", new_user_session_path %>
+<%= link_to "connect as cooker", new_cooker_session_path %>
 
+<% if current_cooker %>
+  <p><%= link_to "Meals", cooker_meals_path %></p>
+  <p><%= link_to "Profile", cooker_path(current_cooker) %></p>
+<% end %>
 
+<% if current_user %>
+  <p>yeah user</p>
+<% end %>
