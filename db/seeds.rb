@@ -1,11 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 require "open-uri"
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Cleaning database...'
+User.destroy_all
+Cooker.destroy_all
+Meal.destroy_all
+Order.destroy_all
+OrderItem.destroy_all
+Note.destroy_all
+Comment.destroy_all
+
+puts 'Creating users...'
 user = User.new(address: "5 rue Teulère, Bordeaux", email: "tony@gromail.com", password: "azertie", username: "PFiori")
 file = URI.open('https://tel.img.pmdstatic.net/fit/https.3A.2F.2Fprd2-tel-epg-img.2Es3-eu-west-1.2Eamazonaws.2Ecom.2FproviderPerson.2Fa4d2c5f0980e06f80.2Ejpeg/300x300/quality/80/patrick-fiori.jpeg')
 user.photo.attach(io: file, filename: 'fiori.jpg', content_type: 'image/jpg')
@@ -16,6 +20,7 @@ file = URI.open('https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.
 user2.photo.attach(io: file, filename: 'garou.jpg', content_type: 'image/jpg')
 user2.save!
 
+puts 'Creating cookers...'
 cooker = Cooker.new(address: "32 rue Renière, bordeaux", username: "PP", first_name: "Pablo", last_name: "Picassiette", email: "pp@gromail.com", password: "azertie")
 file = URI.open('https://sf2.bibamagazine.fr/wp-content/uploads/biba/2017/04/Des-chefs-italiens-donnent-leurs-conseils-sur-les-mets-mal-prepares-a-l-etranger.jpg')
 cooker.photo.attach(io: file, filename: 'pablo.jpg', content_type: 'image/jpg')
@@ -26,6 +31,7 @@ file = URI.open('https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/
 cooker2.photo.attach(io: file, filename: 'romy.jpg', content_type: 'image/jpg')
 cooker2.save!
 
+puts 'Creating meals...'
 salade_choux = Meal.new(name: "Salade de choux", typology: "starter", price: 2, stock: 8, cooker: cooker)
 file = URI.open('https://images.anaca3.com/wp-content/uploads/2018/04/la-salade-de-chou-blanc-fait-elle-maigrir-702x336.jpg')
 salade_choux.photo.attach(io: file, filename: 'salade.jpg', content_type: 'image/jpg')
@@ -49,10 +55,12 @@ file = URI.open('https://i1.wp.com/freethepickle.fr/wp-content/uploads/2019/05/T
 tiramisu.photo.attach(io: file, filename: 'tiramisu.jpg', content_type: 'image/jpg')
 tiramisu.save!
 
-
+puts 'Creating orders and notes...'
 order1 = Order.create!(user: user, cooker: cooker, statut: "paid")
 orderItem1 = OrderItem.create!(number: 1, meal: hamburger, order: order1)
 orderItem2 = OrderItem.create!(number: 2, meal: tiramisu, order: order1)
 note1 = Note.create!(user_id: user, meal: hamburger, rating: 4)
 note2 = Note.create!(user_id: user, meal: tiramisu, rating: 5)
-comment = Comment.create!(cooker: cooker, user: user, content: "ça change de la cuisine de ma femme")
+comment = Comment.create!(cooker: cooker, user: user, content: "ça change de la cuisine de ma femme !")
+
+puts 'Finished!'

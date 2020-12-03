@@ -5,7 +5,7 @@ class CookersController < ApplicationController
     @starters = @cooker.meals.where(typology: "starter")
     @main_courses = @cooker.meals.where(typology: "main_course")
     @desserts = @cooker.meals.where(typology: "dessert")
-    @order_item = OrderItem.new
+    @order = Order.new
   end
 
   def edit
