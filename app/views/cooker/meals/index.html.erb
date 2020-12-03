@@ -1,0 +1,8 @@
+<% @meals.each do |meal| %>
+  <p><%= meal.name %></p>
+  <p>stock : <%= meal.stock %></p>
+  <%= link_to "edit", edit_cooker_meal_path(meal) %>
+  <%= link_to "delete", cooker_meal_path(meal), method: :delete, remote: true %>
+<% end %>
+
+<%= link_to "new", new_cooker_meal_path %>
