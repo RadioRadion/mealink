@@ -4,7 +4,7 @@
 
 <% if user_signed_in? %>
 
-  <%= simple_form_for([ @cooker, @order_item ]) do |f| %>
+  <%= simple_form_for([ @cooker, @order ]) do |f| %>
   <div>
   <% if @starters.length > 0 %>
     <% if @starters.length == 2 %>

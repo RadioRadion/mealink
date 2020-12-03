@@ -1,0 +1,6 @@
+<% @orders.each do |order| %>
+  <p>Order number : <%= order.id %></p>
+  <% order.meals.each do |meal| %>
+    <p><%= meal.name %></p>
+  <% end %>
+<% end %>
