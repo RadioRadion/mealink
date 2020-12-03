@@ -25,8 +25,11 @@ gem 'redis', '~> 4.0'
 #/////////////PWA gem/////////////////
 gem "serviceworker-rails"
 
-#/////////////Geocoding addresses
+#/////////////Geocoding addresses////////////
 gem 'geocoder'
+
+#////////////Uploading images////////////////
+gem 'cloudinary', '~> 1.16.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -21,6 +21,6 @@ class CookersController < ApplicationController
   private
 
   def cooker_params
-    params.require(:cooker).permit(:address, :username)
+    params.require(:cooker).permit(:address, :username, :photo)
   end
 end

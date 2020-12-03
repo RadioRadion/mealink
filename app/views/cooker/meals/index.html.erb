@@ -2,6 +2,7 @@
   <p><%= meal.name %></p>
   <p>stock : <%= meal.stock %></p>
   <%= link_to "edit", edit_cooker_meal_path(meal) %>
+  <%= cl_image_tag meal.photo.key, height: 300, width: 400, crop: :fill %>
   <%= link_to "delete", cooker_meal_path(meal), method: :delete, remote: true %>
 <% end %>
 
