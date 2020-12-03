@@ -1,60 +1,75 @@
 <%= @cooker.username %>
 
-<div>
-<% if @starters.length > 0 %>
-  <% if @starters.length == 2 %>
-    <% @starters.each do |starter| %>
-    <div>
-      <%= starter.name %>
-      <span><%= "#{starter.stock} left" %></span>
-      <%#= f.input (starter.name), :input_html => { :value => 0 } %>
-    </div>
-    <% end %>
-  <% else %>
-    <%= @starters.first.name %>
-    <span><%= "#{@starters.first.stock} left" %></span>
-    <%= f.input @starters.first.name, :input_html => { :value => 0 } %>
-  <% end %>
-<% end %>
-</div>
+<% if user_signed_in? %>
 
-<%= simple_form_for([ @cooker, @order_item ]) do |f| %>
-<div>
-<% if @main_courses.length > 0 %>
-  <% if @main_courses.length == 2 %>
-    <% @main_courses.each do |main_course| %>
+  <%= simple_form_for([ @cooker, @order_item ]) do |f| %>
+  <div>
+  <% if @starters.length > 0 %>
+    <% if @starters.length == 2 %>
+      <% @starters.each do |starter| %>
       <div>
-        <%= main_course.name %>
-        <span><%= "#{main_course.stock} left" %></span>
-        <%= f.input main_course.name, :input_html => { :value => 0 } %>
+        <%= starter.name %>
+        <span><%= "#{starter.stock} left" %></span>
+        <%= f.input (starter.name), :input_html => { :value => 0 } %>
       </div>
+      <% end %>
+    <% else %>
+      <%= @starters.first.name %>
+      <span><%= "#{@starters.first.stock} left" %></span>
+      <%= f.input @starters.first.name, :input_html => { :value => 0 } %>
     <% end %>
-  <% else %>
-    <%= @main_courses.first.name %>
-    <span><%= "#{@main_courses.first.stock} left" %></span>
-    <%= f.input @main_courses.first.name, :input_html => { :value => 0 } %>
+  <% end %>
+  </div>
+
+  <div>
+  <% if @main_courses.length > 0 %>
+    <% if @main_courses.length == 2 %>
+      <% @main_courses.each do |main_course| %>
+        <div>
+          <%= main_course.name %>
+          <span><%= "#{main_course.stock} left" %></span>
+          <%= f.input main_course.name, :input_html => { :value => 0 } %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= @main_courses.first.name %>
+      <span><%= "#{@main_courses.first.stock} left" %></span>
+      <%= f.input @main_courses.first.name, :input_html => { :value => 0 } %>
+    <% end %>
+  <% end %>
+  </div>
+
+
+  <div>
+  <% if @desserts.length > 0 %>
+    <% if @desserts.length == 2 %>
+      <% @desserts.each do |dessert| %>
+        <div>
+          <%= dessert.name %>
+          <span><%= "#{dessert.stock} left" %></span>
+          <%= f.input dessert.name, :input_html => { :value => 0 } %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= @desserts.first.name %>
+      <span><%= "#{@desserts.first.stock} left" %></span>
+      <%= f.input @desserts.first.name, :input_html => { :value => 0 } %>
+    <% end %>
+  <% end %>
+  </div>
+
+    <%= f.button :submit %>
   <% end %>
 <% end %>
-</div>
 
+<% if cooker_signed_in? %>
+  <p><%= current_cooker.address %></p>
+  <p><%= current_cooker.username %></p>
+  <p><%= current_cooker.first_name %></p>
+  <p><%= current_cooker.last_name %></p>
 
-<div>
-<% if @desserts.length > 0 %>
-  <% if @desserts.length == 2 %>
-    <% @desserts.each do |dessert| %>
-      <div>
-        <%= dessert.name %>
-        <span><%= "#{dessert.stock} left" %></span>
-        <%= f.input dessert.name, :input_html => { :value => 0 } %>
-      </div>
-    <% end %>
-  <% else %>
-    <%= @desserts.first.name %>
-    <span><%= "#{@desserts.first.stock} left" %></span>
-    <%= f.input @desserts.first.name, :input_html => { :value => 0 } %>
+  <% if @cooker == current_cooker %>
+    <%= link_to "edit", edit_cooker_path(current_cooker) %>
   <% end %>
-<% end %>
-</div>
 
-  <%= f.button :submit %>
 <% end %>

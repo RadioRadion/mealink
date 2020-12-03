@@ -15,8 +15,10 @@
 <% if current_cooker %>
   <p><%= link_to "Meals", cooker_meals_path %></p>
   <p><%= link_to "Profile", cooker_path(current_cooker) %></p>
+  <p><%= link_to "Orders", cooker_orders_path(current_cooker) %></p>
 <% end %>
 
 <% if current_user %>
   <p>yeah user</p>
+  <p><%= link_to "Profile", user_path(current_user) %></p>
 <% end %>
