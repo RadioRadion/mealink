@@ -1,7 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 
 const initMapbox = () => {
-  console.log("ok2");
   const mapElement = document.getElementById('map');
 
   const fitMapToMarkers = (map, markers) => {

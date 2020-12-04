@@ -1,0 +1,6 @@
+<%= simple_form_for @ingredient do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "DELETE", ingredient_path(@ingredient), method: :delete %>

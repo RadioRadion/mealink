@@ -1,7 +1,14 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = current_user.orders.where(statut: "paid")
+    @orders = current_user.orders.where(statut: "pending")
+    @cooker = current_user.orders.last.cooker
+
+    @markers = {
+        lat: @cooker.latitude,
+        lng: @cooker.longitude,
+        image_url: helpers.asset_url('logo-app-96.png')
+      }
   end
 
   def create

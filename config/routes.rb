@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     resources :orders, only: [ :create ]
   end
   resources :meals, only: [ :index, :show ]
+  resources :ingredients, except: [ :index, :show ]
 
   namespace :cooker do
-    resources :meals
     resources :orders, only: [ :index ]
+    resources :meals
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
