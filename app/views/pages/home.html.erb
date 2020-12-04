@@ -18,10 +18,6 @@
           <%= f.submit :submit, class: 'btn btn-primary' %>
         <% end %>
       <% end %>
-      <% if !current_cooker && !current_user %>
-        <%= link_to "connect as user", new_user_session_path %>
-        <%= link_to "connect as cooker", new_cooker_session_path %>
-      <% end %>
     </div>
   </div>
   <% if current_cooker %>
