@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+[Rails.application.routes.draw do
   devise_for :cookers
   devise_for :users
   root to: 'pages#home'
@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   resources :meals, only: [ :index, :show ]
   resources :ingredients, except: [ :index, :show ]
 
-  namespace :cooker do
-    resources :orders, only: [ :index ]
+  namespace :pro do
+    resources :orders, only: [ :index, :update ]
     resources :meals
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+]

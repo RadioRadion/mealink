@@ -1,4 +1,4 @@
-class Cooker::MealsController < ApplicationController
+class Pro::MealsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :authenticate_cooker!
 
@@ -10,7 +10,7 @@ class Cooker::MealsController < ApplicationController
   def destroy
     @meal = Meal.find(params[:id])
     @meal.destroy
-    redirect_to cooker_meals_path
+    redirect_to pro_meals_path
   end
 
   def new
@@ -22,7 +22,7 @@ class Cooker::MealsController < ApplicationController
     @meals = current_cooker.meals
     @meal.cooker = current_cooker
     if @meal.save!
-      redirect_to cooker_meals_path
+      redirect_to pro_meals_path
     else
       render 'cooker/meals/index'
     end
@@ -35,7 +35,7 @@ class Cooker::MealsController < ApplicationController
   def update
     @meal = Meal.find(params[:id])
     @meal.update!(meal_params)
-    redirect_to cooker_meals_path
+    redirect_to pro_meals_path
   end
 
   private

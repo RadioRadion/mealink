@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h1>Edit your meal :</h1>
+
+  <%= simple_form_for ([ :pro, @meal ]) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :stock %>
+    <%= f.input :typology, collection: ['starter', 'main_course', 'dessert'] %>
+    <%= f.input :price %>
+    <%= f.input :photo, as: :file %>
+    <%= f.button :submit %>
+  <% end %>
+
+</div>

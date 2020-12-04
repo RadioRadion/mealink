@@ -3,7 +3,7 @@ class Meal < ApplicationRecord
   has_many :notes
   has_many :order_items
   has_many :orders, through: :order_items
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
 
   validates :name, presence: true
   validates :price, presence: true
