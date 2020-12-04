@@ -72,7 +72,7 @@ Ingredient.create!(name: "boudoirs", meal: tiramisu)
 Ingredient.create!(name: "amaretto", meal: tiramisu)
 
 puts 'Creating orders and notes...'
-order1 = Order.create!(user: user, cooker: cooker, statut: "paid")
+order1 = Order.create!(user: user, cooker: cooker, statut: "pending")
 orderItem1 = OrderItem.create!(number: 1, meal: hamburger, order: order1)
 orderItem2 = OrderItem.create!(number: 2, meal: tiramisu, order: order1)
 note1 = Note.create!(user: user, meal: hamburger, rating: 4)

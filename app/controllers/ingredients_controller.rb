@@ -21,7 +21,7 @@ class IngredientsController < ApplicationController
   def destroy
     @ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
-    redirect_to cooker_meals_path
+    redirect_to pro_meals_path
   end
 
   def edit
@@ -31,7 +31,7 @@ class IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
     @ingredient.update!(ingredient_params)
-    redirect_to cooker_meals_path
+    redirect_to pro_meals_path
   end
 
   private

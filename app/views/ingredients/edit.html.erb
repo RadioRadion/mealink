@@ -1,6 +1,12 @@
-<%= simple_form_for @ingredient do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
 
-<%= link_to "DELETE", ingredient_path(@ingredient), method: :delete %>
+  <h1>Edit your ingredients :</h1>
+
+  <%= simple_form_for @ingredient do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <%= link_to "DELETE", ingredient_path(@ingredient), method: :delete %>
+
+</div>

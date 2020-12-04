@@ -1,27 +1,33 @@
-<%= @cooker.username %>
+<div class="container">
 
-<%= cl_image_tag @cooker.photo.key, height: 200, width: 200, crop: :fill, class: 'rounded-circle' %>
+  <h1>Welcome !</h1>
+  <h2><%= @cooker.username %>'s meals :</h2>
 
-<% if user_signed_in? %>
 
-  <%= simple_form_for([ @cooker, @order ]) do |f| %>
-  <% [@starters, @main_courses, @desserts].each do |meals| %>
-    <%= render partial: "items", locals: {meals: meals, f: f} %>
-  <% end %>
-  <%= f.button :submit, class: 'btn-primary' %>
-  <% end %>
+  <%= cl_image_tag @cooker.photo.key, height: 200, width: 200, crop: :fill, class: 'rounded-circle' %>
 
-<% end %>
+  <% if user_signed_in? %>
 
-<% if cooker_signed_in? %>
+    <%= simple_form_for([ @cooker, @order ]) do |f| %>
+    <% [@starters, @main_courses, @desserts].each do |meals| %>
+      <%= render partial: "items", locals: {meals: meals, f: f} %>
+    <% end %>
+    <%= f.button :submit, class: 'btn-primary' %>
+    <% end %>
 
-  <p><%= current_cooker.address %></p>
-  <p><%= current_cooker.username %></p>
-  <p><%= current_cooker.first_name %></p>
-  <p><%= current_cooker.last_name %></p>
-
-  <% if @cooker == current_cooker %>
-    <%= link_to "edit", edit_cooker_path(current_cooker) %>
   <% end %>
 
-<% end %>
+  <% if cooker_signed_in? %>
+
+    <p><%= current_cooker.address %></p>
+    <p><%= current_cooker.username %></p>
+    <p><%= current_cooker.first_name %></p>
+    <p><%= current_cooker.last_name %></p>
+
+    <% if @cooker == current_cooker %>
+      <%= link_to "edit", edit_cooker_path(current_cooker) %>
+    <% end %>
+
+  <% end %>
+
+</div>

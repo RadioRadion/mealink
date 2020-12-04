@@ -1,27 +1,30 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1556911261-6bd341186b2f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80);">
+  <div class="container">
+    <h1>Eat <strong>homemade</strong> local food with <strong>Mealink</strong>!</h1>
+    <p>Various food all around you for the lunch.</p>
+  </div>
+</div>
 
-<%= form_for(@search) do |f| %>
-  <%= f.label :address %>
-  <%= f.text_field :address, id: 'cooker_search' %>
-  <%= f.label :distance %>
-  <%= f.number_field :distance %>
-  <%= f.submit :submit %>
-<% end %>
+<div class="container">
 
-<% if !current_cooker && !current_user %>
-  <%= link_to "connect as user", new_user_session_path %>
-  <%= link_to "connect as cooker", new_cooker_session_path %>
-<% end %>
-
-<% if current_cooker %>
-  <p><%= link_to "Meals", cooker_meals_path %></p>
-  <p><%= link_to "Profile", cooker_path(current_cooker) %></p>
-  <p><%= link_to "Orders", cooker_meal_path(current_cooker) %></p>
-<% end %>
-
-<% if current_user %>
-  <p>Hi <%= current_user.username %>!</p>
-  <p><%= link_to "Profile", user_path(current_user) %></p>
-  <p><%= link_to "Orders", user_orders_path(current_user) %></p>
-<% end %>
+  <div class="d-flex justify-content-center mt-5 mb-5">
+    <div class="col-6">
+      <% if !current_cooker %>
+        <%= form_for(@search) do |f| %>
+          <%= f.label :address, 'Enter your address and see cooker around you :' %>
+          <%= f.text_field :address, id: 'cooker_search' %>
+          <%= f.label :distance, 'Distance maximum from you (km) :' %>
+          <%= f.number_field :distance %>
+          <%= f.submit :submit, class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+      <% if !current_cooker && !current_user %>
+        <%= link_to "connect as user", new_user_session_path %>
+        <%= link_to "connect as cooker", new_cooker_session_path %>
+      <% end %>
+    </div>
+  </div>
+  <% if current_cooker %>
+    <%= render 'cards' %>
+  <% end %>
+</div>

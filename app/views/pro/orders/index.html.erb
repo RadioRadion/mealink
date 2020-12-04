@@ -1,0 +1,13 @@
+<div class="container">
+
+  <h1>Your current orders :</h1>
+
+  <% @orders.each do |order| %>
+    <h1>Order number : <%= order.id %></h2>
+    <% order.order_items.each do |order_item| %>
+      <p><%= order_item.number %> <%= order_item.meal.name %></p>
+    <% end %>
+  <%= link_to 'mark as paid', pro_order_path(order), method: :patch %>
+  <% end %>
+
+</div>

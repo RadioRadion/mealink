@@ -1,8 +1,18 @@
-<%= @user.address %>
-<%= @user.username %>
+<div class="container">
 
-<%= cl_image_tag @user.photo.key, height: 200, width: 200, crop: :fill, class: 'rounder-circle' %>
+  <h1>Your profile :</h1>
 
-<% if @user == current_user %>
-  <%= link_to "edit", edit_user_path(current_user) %>
-<% end %>
+  <h2>Address :</h2>
+  <p><%= @user.address %></p>
+
+  <h2>Username :</h2>
+  <p><%= @user.username %></p>
+
+  <h2>Photo</h2>
+  <%= cl_image_tag @user.photo.key, height: 200, width: 200, crop: :fill, class: 'rounded-circle' %>
+
+  <% if @user == current_user %>
+    <p><%= link_to "edit profile", edit_user_path(current_user) %></p>
+  <% end %>
+
+</div>

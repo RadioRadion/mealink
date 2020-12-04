@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>Your meals :</h1>
+
+  <% @meals.each do |meal| %>
+    <h2><%= meal.name %></h2>
+    <p>stock : <%= meal.stock %></p>
+    <p><%= cl_image_tag meal.photo.key, height: 300, width: 400, crop: :fill %></p>
+    <p><%= link_to "edit", edit_pro_meal_path(meal) %></p>
+    <p><%= link_to "delete if no during lunch", pro_meal_path(meal), method: :delete, remote: true %></p>
+    <h3>ingredients :</h3>
+    <% meal.ingredients.each do |ingredient| %>
+      <p><%= ingredient.name %>, <%= link_to "edit", edit_ingredient_path(ingredient) %></p>
+    <% end %>
+  <% end %>
+
+  <%= link_to "new", new_pro_meal_path %>
+
+</div>

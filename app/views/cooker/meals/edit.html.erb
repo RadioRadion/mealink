@@ -1,8 +1,0 @@
-<%= simple_form_for ([ :cooker, @meal ]) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :stock %>
-  <%= f.input :typology, collection: ['starter', 'main_course', 'dessert'] %>
-  <%= f.input :price %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
