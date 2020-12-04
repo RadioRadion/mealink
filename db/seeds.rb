@@ -1,13 +1,15 @@
 require "open-uri"
 
 puts 'Cleaning database...'
-User.destroy_all
-Cooker.destroy_all
-Meal.destroy_all
-Order.destroy_all
-OrderItem.destroy_all
-Note.destroy_all
+Search.destroy_all
 Comment.destroy_all
+Ingredient.destroy_all
+Note.destroy_all
+OrderItem.destroy_all
+Order.destroy_all
+User.destroy_all
+Meal.destroy_all
+Cooker.destroy_all
 
 puts 'Creating users...'
 user = User.new(address: "5 rue Teulère, Bordeaux", email: "tony@gromail.com", password: "azertie", username: "PFiori")
@@ -36,31 +38,45 @@ salade_choux = Meal.new(name: "Salade de choux", typology: "starter", price: 2, 
 file = URI.open('https://images.anaca3.com/wp-content/uploads/2018/04/la-salade-de-chou-blanc-fait-elle-maigrir-702x336.jpg')
 salade_choux.photo.attach(io: file, filename: 'salade.jpg', content_type: 'image/jpg')
 salade_choux.save!
+Ingredient.create!(name: "choux", meal: salade_choux)
+Ingredient.create!(name: "vinaigrette huile de noix", meal: salade_choux)
 
 
 dahl_lentilles = Meal.new(name: "Dahl de lentilles", typology: "starter", price: 2, stock: 8, cooker: cooker)
 file = URI.open('https://cuisine-addict.com/wp-content/uploads/2019/02/recette-dahl-lentilles.jpg')
 dahl_lentilles.photo.attach(io: file, filename: 'dahl.jpg', content_type: 'image/jpg')
 dahl_lentilles.save!
-
+Ingredient.create!(name: "lentilles", meal: dahl_lentilles)
+Ingredient.create!(name: "curry", meal: dahl_lentilles)
+Ingredient.create!(name: "lait de coco", meal: dahl_lentilles)
 
 hamburger = Meal.new(name: "Hamburger", typology: "main_course", price: 9, stock: 8, cooker: cooker)
 file = URI.open('https://cdn.radiofrance.fr/s3/cruiser-production/2019/02/3e27345f-9e1e-45bb-9e5f-906f0abb2870/1200x680_gettyimages-922684138.jpg')
 hamburger.photo.attach(io: file, filename: 'hamburger.jpg', content_type: 'image/jpg')
 hamburger.save!
+Ingredient.create!(name: "salade", meal: hamburger)
+Ingredient.create!(name: "pain", meal: hamburger)
+Ingredient.create!(name: "tomate", meal: hamburger)
+Ingredient.create!(name: "steack", meal: hamburger)
+Ingredient.create!(name: "fromage", meal: hamburger)
 
 
 tiramisu = Meal.new(name: "Tiramisu", typology: "dessert", price: 3, stock: 8, cooker: cooker)
 file = URI.open('https://i1.wp.com/freethepickle.fr/wp-content/uploads/2019/05/Tiramisu-5-of-6.jpg?fit=3979%2C2984&ssl=1')
 tiramisu.photo.attach(io: file, filename: 'tiramisu.jpg', content_type: 'image/jpg')
 tiramisu.save!
+Ingredient.create!(name: "mascarpone", meal: tiramisu)
+Ingredient.create!(name: "café", meal: tiramisu)
+Ingredient.create!(name: "chocolat", meal: tiramisu)
+Ingredient.create!(name: "boudoirs", meal: tiramisu)
+Ingredient.create!(name: "amaretto", meal: tiramisu)
 
 puts 'Creating orders and notes...'
 order1 = Order.create!(user: user, cooker: cooker, statut: "paid")
 orderItem1 = OrderItem.create!(number: 1, meal: hamburger, order: order1)
 orderItem2 = OrderItem.create!(number: 2, meal: tiramisu, order: order1)
-note1 = Note.create!(user_id: user, meal: hamburger, rating: 4)
-note2 = Note.create!(user_id: user, meal: tiramisu, rating: 5)
+note1 = Note.create!(user: user, meal: hamburger, rating: 4)
+note2 = Note.create!(user: user, meal: tiramisu, rating: 5)
 comment = Comment.create!(cooker: cooker, user: user, content: "ça change de la cuisine de ma femme !")
 
 puts 'Finished!'

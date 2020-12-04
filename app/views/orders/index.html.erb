@@ -2,5 +2,13 @@
   <p>Order number : <%= order.id %></p>
   <% order.meals.each do |meal| %>
     <p><%= meal.name %></p>
+    <p>Price : <%= meal.price %> €</p>
   <% end %>
 <% end %>
+
+<p>VOTRE COMMANDE EST DISPONIBLE ICI :</p>
+
+<div id="map_user"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>

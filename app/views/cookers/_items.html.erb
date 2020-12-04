@@ -1,0 +1,23 @@
+<div>
+<% if meals.length > 0 %>
+  <% if meals.length == 2 %>
+    <% meals.each do |meal| %>
+    <div>
+      <%= cl_image_tag meal.photo.key, height: 200, width: 300, crop: :fill %>
+      <%= f.input (meal.name), :input_html => { :value => 0 } %>
+      <span><%= "#{meal.stock} left" %></span>
+      <%# meal.ingredients.each do |ingredient| %>
+        <!-- <p>ingredient.name</p> -->
+      <%# end %>
+    </div>
+    <% end %>
+  <% else %>
+    <%= cl_image_tag meals.first.photo.key, height: 200, width: 300, crop: :fill %>
+    <%= f.input meals.first.name, :input_html => { :value => 0 } %>
+    <span><%= "#{meals.first.stock} left" %></span>
+    <%# meals.ingredients.each do |ingredient| %>
+        <!-- <p>ingredient.name</p> -->
+      <%# end %>
+  <% end %>
+<% end %>
+</div>
